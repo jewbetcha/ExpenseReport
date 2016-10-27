@@ -1,6 +1,8 @@
 import React from 'react'
-import Fb from '../components/firebase.js'
+import Inputs from '../components/expense.js'
 
 export default () => (
-  <div>Welcome to next.js!</div>
+  <div>Welcome to next.js!
+  <Inputs />
+  </div>
 )
