@@ -4,7 +4,8 @@
   "description": "Small web app built with React and Firebase for tracking expenses",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "next"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/themezzilla/ExpenseReport#readme",
   "dependencies": {
-    "next": "^1.0.0"
+    "firebase": "^3.5.2",
+    "next": "^1.0.0",
+    "reactfire": "^1.0.0"
   }
 }
