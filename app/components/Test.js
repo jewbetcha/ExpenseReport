@@ -1,11 +1,12 @@
 import React from 'react';
 
-class Test extends React.Component {
-  render() {
-    return (
-      <div>Hi</div>
-    );
-  }
-}
+const Test = (props) => {
+  return (
+    <div className="container text-center">
+      <h1>hi</h1>
+      <p>Test</p>
+    </div>
+  );
+};
 
 export default Test;
