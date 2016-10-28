@@ -9,7 +9,7 @@ class Home extends React.Component {
         <Messages messages={this.props.messages}/>
         <div className="row">
           <div className="col-sm">
-            <h3>Heading</h3>
+            <h3>Poop</h3>
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
               mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
               mollis euismod. Donec sed odio dui.</p>

@@ -41,7 +41,7 @@ var app = express();
 
 var compiler = webpack(config);
 
-mongoose.connect(process.env.MONGODB);
+mongoose.connect('mongodb://react:react@ds031257.mlab.com:31257/expense');
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
