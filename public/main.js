@@ -1,3 +1,5 @@
+import './main.scss';
+
 // const update = document.querySelector('#update');
 // const del = document.querySelector('#delete');
 
