@@ -16,6 +16,13 @@
                     <div>Date</div>
                     <div>Delete</div>
             </div>
+            <% if (expenses.length === 0) { %>
+            <div class="row">
+                <div>
+                    There are no expenses reported here, add one with the form below!
+                </div>
+            </div>
+            <% } else { %>
             <% for(var i=0; i<expenses.length; i++) {%>
                 <div class="row">
                     <div><%= expenses[i].name %></div>
@@ -27,7 +34,7 @@
                         <button class="delete" type="delete" name="<%= expenses[i].name %>">x</button>
                     </div>
                 </div>
-            <% } %>
+            <% } }%>
         </div>
 
         <form action="/expenses" method="POST">
