@@ -18,6 +18,6 @@
     "webpack-dashboard": "^0.3.0"
   },
   "scripts": {
-    "start": "concurrently 'nodemon index.js' 'webpack --watch'"
+    "start": "concurrently 'nodemon index.js' 'webpack --watch -p'"
   }
 }

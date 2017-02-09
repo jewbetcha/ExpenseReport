@@ -19,15 +19,15 @@ MongoClient.connect('mongodb://root:crudapp@ds031257.mlab.com:31257/expense', (e
 })
 
 app.get('/', (req,res) => {
-    db.collection('quotes').find().toArray(function(err, result) {
+    db.collection('expenses').find().toArray(function(err, result) {
         if (err) return console.log(err)
 
-        res.render('index.ejs', {quotes: result})
+        res.render('index.ejs', {expenses: result})
     })
 });
 
-app.post('/quotes', (req, res) => {
-  db.collection('quotes').save(req.body, (err, result) => {
+app.post('/expenses', (req, res) => {
+  db.collection('expenses').save(req.body, (err, result) => {
       if (err) return console.log(err)
 
       console.log('saved to db')
@@ -35,8 +35,8 @@ app.post('/quotes', (req, res) => {
   });
 });
 
-app.put('/quotes', (req, res) => {
-  db.collection('quotes')
+app.put('/expenses', (req, res) => {
+  db.collection('expenses')
   .findOneAndUpdate({name: 'Yoda'}, {
     $set: {
       name: req.body.name,
@@ -51,8 +51,8 @@ app.put('/quotes', (req, res) => {
   })
 })
 
-app.delete('/quotes', (req, res) => {
-  db.collection('quotes').findOneAndDelete({name: req.body.name},
+app.delete('/expenses', (req, res) => {
+  db.collection('expenses').findOneAndDelete({name: req.body.name},
   (err, result) => {
     if (err) return res.send(500, err)
     res.send('A darth vadar quote got deleted')
