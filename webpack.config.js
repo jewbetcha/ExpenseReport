@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const config = {
@@ -36,7 +37,11 @@ const config = {
     }]
   },
   plugins: [
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ]
 }
 

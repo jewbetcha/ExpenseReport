@@ -55,6 +55,8 @@ app.delete('/expenses', (req, res) => {
   db.collection('expenses').findOneAndDelete({name: req.body.name},
   (err, result) => {
     if (err) return res.send(500, err)
-    res.send('A darth vadar quote got deleted')
+    console.log(req.body.name + ' has been deleted')
+    res.redirect('/')
+
   })
 })

@@ -8,20 +8,21 @@
     <div class="container">
         <div class="expenses">
             <h3>Expenses</h3>
-            <div class="row header">
+            <div class="header">
                     <div>Name</div>
                     <div>Cost ($)</div>
                     <div>Type</div>
-                    <div>Date</div>
                     <div>Method</div>
+                    <div>Date</div>
             </div>
             <% for(var i=0; i<expenses.length; i++) {%>
                 <div class="row">
                     <div><%= expenses[i].name %></div>
                     <div><%= expenses[i].cost %></div>
                     <div><%= expenses[i].type %></div>
-                    <div><%= expenses[i].date %></div>
-                    <div><%= expenses[i].method %></div>                    
+                    <div><%= expenses[i].method %></div>
+                    <div><%= expenses[i].date %></div> 
+                    <button class="delete" type="delete" name="<%= expenses[i].name %>">x</button>          
                 </div>
             <% } %>
         </div>

@@ -1,8 +1,10 @@
+import './base.scss'
 import './main.scss';
 
-// const update = document.querySelector('#update');
-// const del = document.querySelector('#delete');
 
+// const update = document.querySelector('#update');
+const del = document.querySelectorAll('.delete');
+console.log(del)
 // update.addEventListener('click', () => {
 //     fetch('quotes', {
 //         method: 'put',
@@ -21,21 +23,24 @@ import './main.scss';
 //     })
 // });
 
-// del.addEventListener('click', () => {
-//   fetch('quotes', {
-//     method: 'delete',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       'name': 'Darth Vader'
-//     })
-//   })
-//   .then(res => {
-//     if (res.ok) return res.json()
-//   }).
-//   then(data => {
-//     console.log(data)
-//     window.location.reload(true)
-//   })
-// })
+for (let i of del) {
+  const name = i.getAttribute('name');
+  i.addEventListener('click', () => {
+    fetch('expenses', {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'name': name
+      })
+    })
+    .then(res => {
+      if (res.ok) return res.json()
+    }).
+    then(data => {
+      console.log(data)
+      window.location.reload(true)
+    })
+  })
+}
