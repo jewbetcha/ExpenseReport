@@ -10,26 +10,29 @@
             <h3>Expenses</h3>
             <div class="header">
                     <div>Name</div>
-                    <div>Cost ($)</div>
+                    <div>Cost</div>
                     <div>Type</div>
                     <div>Method</div>
                     <div>Date</div>
+                    <div>Delete</div>
             </div>
             <% for(var i=0; i<expenses.length; i++) {%>
                 <div class="row">
                     <div><%= expenses[i].name %></div>
-                    <div><%= expenses[i].cost %></div>
+                    <div>$<%= expenses[i].cost %></div>
                     <div><%= expenses[i].type %></div>
                     <div><%= expenses[i].method %></div>
                     <div><%= expenses[i].date %></div> 
-                    <button class="delete" type="delete" name="<%= expenses[i].name %>">x</button>          
+                    <div>
+                        <button class="delete" type="delete" name="<%= expenses[i].name %>">x</button>
+                    </div>
                 </div>
             <% } %>
         </div>
 
         <form action="/expenses" method="POST">
             <input type="text" placeholder="Name" name="name">
-            <input type="text" placeholder="Cost" name="cost">
+            <input type="number" placeholder="Cost" name="cost">
             <select name="type">
                 <option value="Food">Food</option>
                 <option value="Fun">Fun</option>

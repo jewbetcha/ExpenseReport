@@ -18,6 +18,7 @@ MongoClient.connect('mongodb://root:crudapp@ds031257.mlab.com:31257/expense', (e
     })
 })
 
+
 app.get('/', (req,res) => {
     db.collection('expenses').find().toArray(function(err, result) {
         if (err) return console.log(err)

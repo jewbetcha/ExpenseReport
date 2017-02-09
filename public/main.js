@@ -4,7 +4,7 @@ import './main.scss';
 
 // const update = document.querySelector('#update');
 const del = document.querySelectorAll('.delete');
-console.log(del)
+
 // update.addEventListener('click', () => {
 //     fetch('quotes', {
 //         method: 'put',
