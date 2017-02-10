@@ -27,6 +27,18 @@ app.get('/', (req,res) => {
     })
 });
 
+app.get('/charts', (req,res) => {
+    res.render('charts.ejs')
+});
+
+app.get('/data', (req,res) => {
+  db.collection('expenses').find().toArray(function(err, result) {
+        if (err) return console.log(err)
+
+        res.send(result);
+    })
+});
+
 app.post('/expenses', (req, res) => {
   db.collection('expenses').save(req.body, (err, result) => {
       if (err) return console.log(err)

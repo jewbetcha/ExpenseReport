@@ -1,13 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+// const extractCommons = new webpack.optimize.CommonsChunkPlugin({
+//   name: 'commons',
+//   filename: 'commons.js'
+// })
 
 const config = {
   context: path.resolve(__dirname),
-  entry: './public/main.js',
+  entry: {
+      main: './public/main.js',
+      charts: './public/charts.js',
+      expenses: './public/expenses.js'
+  },
   output: {
     path: path.resolve(__dirname),
-    filename: './public/bundle.js'
+    filename: './public/[name].bundle.js'
   },
   module: {
     rules: [{
@@ -37,11 +45,8 @@ const config = {
     }]
   },
   plugins: [
-    new DashboardPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    })
+    new DashboardPlugin()
+    //extractCommons
   ]
 }
 

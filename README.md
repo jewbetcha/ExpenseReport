@@ -3,7 +3,8 @@
 
 
 ### Configuration
-* `yarn`
+* `$ yarn`
+* `$ yarn dev` for local development
 * Node.js
 * MongoDB
 * Webpack
