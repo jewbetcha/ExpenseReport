@@ -119,3 +119,20 @@ button {
         background: lighten(#7b7b81, 20%);
     }
 }
+
+.nav {
+  a {
+    text-decoration: none;
+    margin-right: 20px;
+    padding-bottom: 5px;
+    color: #000;
+    font-size: 20px;
+
+    &:hover {
+      border-bottom: 2px solid #7b7b81;
+    }
+    &.active {
+      border-bottom: 2px solid #7b7b81;
+    }
+  }
+}
