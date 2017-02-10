@@ -1,8 +1,11 @@
 import Chart from 'chart.js';
 import uniq from 'lodash/uniq';
+import countBy from 'lodash/countBy'
+import values from 'lodash/values'
 
 import './styles/charts.scss'
 
+// Define our chart elements
 const typeElement = document.querySelector('#typeChart');
 const methodElement = document.querySelector('#methodChart');
 
@@ -24,8 +27,8 @@ fetch('/data')
       }
 
       // Use the data how we want
-      response.json().then(function(data) {  
-
+      response.json().then(function(data) {
+        // Main loop divvying out the data  
         for (let i in data) {
             let t = data[i].type
             types.push(t)
@@ -33,31 +36,12 @@ fetch('/data')
             let m = data[i].method
             methods.push(m)
         }
-        let typesUniq = uniq(types);
-        let methodsUniq = uniq(methods)
-
-        let typeCounts = {};
-        let methodCounts = {};
-        let typeCountsArray = [];
-        let methodCountsArray = [];
-        for (let i of types) {
-            typeCounts[i] = (typeCounts[i] || 0)+1;
-        }
-        for (let i of methods) {
-            methodCounts[i] = (methodCounts[i] || 0)+1;
-        }
-        for (let i in typeCounts) {
-            typeCountsArray.push(typeCounts[i])
-        }
-        for (let i in methodCounts) {
-            methodCountsArray.push(methodCounts[i])
-        }
 
         let typeDataObj = {
-            labels: typesUniq,
+            labels: uniq(types),
             datasets: [
                 {
-                    data:typeCountsArray,
+                    data: values(countBy(types)), // Count number of occurances, then make the values into an array
                     backgroundColor: [
                         "#D8DDE3",
                         "#A7AAAE",
@@ -71,10 +55,10 @@ fetch('/data')
             ]
         }
         let methodsDataObj = {
-            labels: methodsUniq,
+            labels: uniq(methods),
             datasets: [
                 {
-                    data: methodCountsArray,
+                    data: values(countBy(methods)),
                     backgroundColor: [
                         "#D8DDE3",
                         "#A7AAAE",
@@ -88,6 +72,7 @@ fetch('/data')
             ]
         }
         
+        // Make the charts!
         const typePieChart = new Chart(typeChart ,{
             type: 'pie',
             data: typeDataObj
