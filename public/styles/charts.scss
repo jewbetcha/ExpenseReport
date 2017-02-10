@@ -1,8 +1,12 @@
 .charts {
     margin: 20px 0;
+    display: flex;
+    flex-direction: row;
 
     &__wrapper {
-        width: 50%;
-        float: left;
+        flex-basis: 50%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
     }
 }

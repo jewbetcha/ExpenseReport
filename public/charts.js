@@ -1,11 +1,16 @@
 import Chart from 'chart.js';
 import uniq from 'lodash/uniq';
-import filter from 'lodash/filter';
-import includes from 'lodash/includes';
 
-const chartOne = document.querySelector('#chart');
+import './styles/charts.scss'
 
-// Get the data 
+const typeElement = document.querySelector('#typeChart');
+const methodElement = document.querySelector('#methodChart');
+
+// Make an array of the kinds of data we want
+const dataTypes = [
+    'types',
+    'methods'
+];
 let types = [];
 let methods = [];
 
@@ -20,47 +25,76 @@ fetch('/data')
 
       // Use the data how we want
       response.json().then(function(data) {  
-        // console.log(dataObj[0].type);
+
         for (let i in data) {
             let t = data[i].type
             types.push(t)
+
+            let m = data[i].method
+            methods.push(m)
         }
         let typesUniq = uniq(types);
-        console.log(types)
-        console.log(typesUniq)
-        let counts = {};
-        let countsArray = [];
+        let methodsUniq = uniq(methods)
+
+        let typeCounts = {};
+        let methodCounts = {};
+        let typeCountsArray = [];
+        let methodCountsArray = [];
         for (let i of types) {
-            counts[i] = (counts[i] || 0)+1;
+            typeCounts[i] = (typeCounts[i] || 0)+1;
         }
-        console.log(counts)
-        for (let i in counts) {
-            countsArray.push(counts[i])
+        for (let i of methods) {
+            methodCounts[i] = (methodCounts[i] || 0)+1;
+        }
+        for (let i in typeCounts) {
+            typeCountsArray.push(typeCounts[i])
+        }
+        for (let i in methodCounts) {
+            methodCountsArray.push(methodCounts[i])
         }
 
-        console.log(countsArray);
-        let dataObj = {
+        let typeDataObj = {
             labels: typesUniq,
             datasets: [
                 {
-                    data: countsArray,
+                    data:typeCountsArray,
                     backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
+                        "#D8DDE3",
+                        "#A7AAAE",
+                        "#D7E6F6",
+                        "#7B7B81"
                     ]
+                    // hoverBackgroundColor: [
+                    //     "#FF6384"
+                    // ]
+                }
+            ]
+        }
+        let methodsDataObj = {
+            labels: methodsUniq,
+            datasets: [
+                {
+                    data: methodCountsArray,
+                    backgroundColor: [
+                        "#D8DDE3",
+                        "#A7AAAE",
+                        "#D7E6F6",
+                        "#7B7B81"
+                    ]
+                    // hoverBackgroundColor: [
+                    //     "#FF6384"
+                    // ]
                 }
             ]
         }
         
-        var myPieChart = new Chart(chartOne ,{
+        const typePieChart = new Chart(typeChart ,{
             type: 'pie',
-            data: dataObj
+            data: typeDataObj
+        });
+        const methodPieChart = new Chart(methodElement ,{
+            type: 'pie',
+            data: methodsDataObj
         });
       });  
     }  
