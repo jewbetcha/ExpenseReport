@@ -34,6 +34,17 @@ const config = {
       use: [
         'style-loader',
         'css-loader',
+          {
+            loader: 'postcss-loader?sourceMap=false',
+            options: {
+              plugins: function () {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
         'sass-loader'
       ]
     }, {
