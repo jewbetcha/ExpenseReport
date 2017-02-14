@@ -1,5 +1,5 @@
 // Styles
-import './styles/font.scss';
+//import './styles/font.scss';
 import './styles/base.scss'
 
 // Active state for nav links

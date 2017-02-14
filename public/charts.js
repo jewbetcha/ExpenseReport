@@ -4,7 +4,6 @@ import countBy from 'lodash/countBy'
 import values from 'lodash/values'
 import sortedUniq from 'lodash/sortedUniq'
 
-import './styles/charts.scss'
 
 // Define our chart elements
 const typeElement = document.querySelector('#typeChart');

@@ -1,5 +1,3 @@
-import './styles/expenses.scss'
-
 // Give all delete buttons action to delete respective entry
 const del = document.querySelectorAll('.delete');
 
