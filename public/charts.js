@@ -21,20 +21,20 @@ let monthlyCost = [];
 let days = [];
 
 // Get the month for monthly spending chart
-// const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December'
-// ];
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
 var d = new Date();
 var month = d.getMonth();
 

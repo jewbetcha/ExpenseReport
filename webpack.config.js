@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 // const extractCommons = new webpack.optimize.CommonsChunkPlugin({
 //   name: 'commons',
 //   filename: 'commons.js'
@@ -31,22 +32,24 @@ const config = {
       }]
     }, {
       test: /\.scss$/,
-      use: [
-        'style-loader',
-        'css-loader',
-          {
-            loader: 'postcss-loader?sourceMap=false',
-            options: {
-              plugins: function () {
-                return [
-                  require('precss'),
-                  require('autoprefixer')
-                ];
+      use: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            'css-loader',
+            {
+              loader: 'postcss-loader?sourceMap=false',
+              options: {
+                plugins: function () {
+                  return [
+                    require('precss'),
+                    require('autoprefixer')
+                  ];
+                }
               }
-            }
-          },
-        'sass-loader'
-      ]
+            }, 
+            'sass-loader'
+            ],
+        })
     }, {
       test: /\.(png|jpg)$/,
       use: [{
@@ -56,7 +59,8 @@ const config = {
     }]
   },
   plugins: [
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new ExtractTextPlugin("./public/dist/styles.css")
     //extractCommons
   ]
 }
