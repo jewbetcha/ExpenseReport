@@ -10,5 +10,12 @@
         display: flex;
         text-align: center;
         flex-direction: column;
+        flex: 1;
+    }
+    .total {
+        font-size: 4rem;
+        align-self: center;
+        display: flex;
+        margin-top: 50px;
     }
 }

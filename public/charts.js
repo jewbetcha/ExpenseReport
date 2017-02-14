@@ -9,6 +9,8 @@ import sortedUniq from 'lodash/sortedUniq'
 const typeElement = document.querySelector('#typeChart');
 const methodElement = document.querySelector('#methodChart');
 const monthlyElement = document.querySelector('#monthlyChart');
+const totalElement = document.querySelector('.total');
+
 // Make an array of the kinds of data we want
 const dataTypes = [
     'types',
@@ -18,22 +20,23 @@ let types = [];
 let methods = [];
 let monthlyCost = [];
 let days = [];
+let totalSpending = 0;
 
 // Get the month for monthly spending chart
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-];
+// const months = [
+//     'January',
+//     'February',
+//     'March',
+//     'April',
+//     'May',
+//     'June',
+//     'July',
+//     'August',
+//     'September',
+//     'October',
+//     'November',
+//     'December'
+// ];
 var d = new Date();
 var month = d.getMonth();
 
@@ -66,7 +69,12 @@ fetch('/data')
                 monthlyCost.push(c)
                 days.push(day)
             }
+
+            // Add up total cost
+            totalSpending += c;
         }
+        totalElement.innerHTML = `$ ${totalSpending}`;
+
         console.log(monthlyCost);
         console.log(days);
         const typeDataObj = {
