@@ -73,6 +73,7 @@ fetch('/data')
             // Add up total cost
             totalSpending += c;
         }
+        // Display total spending
         totalElement.innerHTML = `$ ${totalSpending}`;
 
         console.log(monthlyCost);
