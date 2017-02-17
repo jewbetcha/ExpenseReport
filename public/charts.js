@@ -18,25 +18,40 @@ const dataTypes = [
 ];
 let types = [];
 let methods = [];
-let monthlyCost = [];
 let days = [];
 let totalSpending = 0;
 
+// Array to add up spending per month
+let monthlySpending = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+];
+
 // Get the month for monthly spending chart
-// const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December'
-// ];
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
 var d = new Date();
 var month = d.getMonth();
 
@@ -59,25 +74,22 @@ fetch('/data')
             let m = data[i].method
             methods.push(m)
 
-            // Check for spending this month, if data is part of this month, add to 
-            // Monthly spending data
+            // Add up spending by month
             let d = data[i].date
             let c = parseInt(data[i].cost)
             let dateParts = d.split('-')
             let day = parseInt(dateParts[2])
-            if (parseInt(dateParts[1]) === (month + 1)) {
-                monthlyCost.push(c)
-                days.push(day)
-            }
+            let month = parseInt(dateParts[1])
+
+            monthlySpending[month-1] += c;
 
             // Add up total cost
             totalSpending += c;
         }
+        console.log(monthlySpending);
         // Display total spending
         totalElement.innerHTML = `$ ${totalSpending}`;
 
-        console.log(monthlyCost);
-        console.log(days);
         const typeDataObj = {
             labels: uniq(types),
             datasets: [
@@ -107,29 +119,27 @@ fetch('/data')
             ]
         }
         const monthlyDataObj = {
-            labels: uniq(days),
+            labels: months,
             datasets: [
                 {
-                    label: 'Monthly Spending',
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "#7B7B81",
-                    borderColor: "#7B7B81",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "#D7E6F6",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "#D7E6F6",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: monthlyCost,
-                    spanGaps: false,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: monthlySpending,
                 }
             ]
         }
@@ -143,7 +153,7 @@ fetch('/data')
             data: methodsDataObj
         });
         const monthlyLineChart = new Chart(monthlyElement ,{
-            type: 'line',
+            type: 'bar',
             data: monthlyDataObj
         });
 
