@@ -22,20 +22,7 @@ let days = [];
 let totalSpending = 0;
 
 // Array to add up spending per month
-let monthlySpending = [
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-];
+let monthlySpending = [0,0,0,0,0,0,0,0,0,0,0,0];
 
 // Get the month for monthly spending chart
 const months = [
